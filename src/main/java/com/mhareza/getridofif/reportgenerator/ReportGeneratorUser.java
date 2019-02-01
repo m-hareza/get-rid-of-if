@@ -1,5 +1,6 @@
 package com.mhareza.getridofif.reportgenerator;
 
+import com.mhareza.getridofif.reportgenerator.nullobject.EasyReportGenerator;
 import java.util.Date;
 
 public class ReportGeneratorUser {
@@ -27,6 +28,13 @@ public class ReportGeneratorUser {
 		reportGeneratorWithNullObject.generate(startDate, endDate);
 		reportGeneratorWithNullObject.generate(startDate, listener);
 		reportGeneratorWithNullObject.generate(startDate);
+
+		//nullable with null object used internally - to avoid ifs in clients code
+		EasyReportGenerator easyReportGenerator = new EasyReportGenerator(transactionRepository);
+		easyReportGenerator.generate(startDate, endDate, listener);
+		easyReportGenerator.generate(startDate, endDate, null);
+		easyReportGenerator.generate(startDate, null, listener);
+		easyReportGenerator.generate(startDate, null, null);
 
 	}
 
